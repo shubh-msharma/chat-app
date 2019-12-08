@@ -12,10 +12,9 @@ const io = socketio(server);
 // 
 
 io.on('connection',(socket)=>{
-    console.log("user joined")
 
     socket.on('join',({name,room},callback)=>{
-        const {user,error} = addUser({id:socket.id,name,room});
+        const {user,error} = addUser({id:socket.id,name:name,room:room});
         if(error){
             return callback(error);
         }
@@ -46,7 +45,6 @@ io.on('connection',(socket)=>{
 })
 
 // 
-
 
 app.use(router);
 app.use(cors());
